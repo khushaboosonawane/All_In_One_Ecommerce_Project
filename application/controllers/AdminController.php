@@ -1,5 +1,9 @@
 <?php
 class AdminController extends CI_Controller{
+    function __construct(){
+        parent::__construct();
+        date_default_timezone_set('Asia/Kolkata');
+    }
     private function nav(){
         $this->load->view("admin/navbar");
     }
@@ -12,14 +16,45 @@ class AdminController extends CI_Controller{
         $this->footer();
     }
     public function category(){
+        $data['cat_list']=$this->mymodel->select("category");
         $this->nav();
-        $this->load->view("admin/category");
+        $this->load->view("admin/category",$data);
         $this->footer();
+    }
+    public function save_category(){
+        $_POST['category_status']="active";
+        $_POST['entry_date']=date('Y-m-d H:iA');
+        $this->mymodel->insert("category",$_POST);
+        redirect(base_url()."admincontroller/category");
+
+    }
+    public function edit_category_data($cat_id){
+        $data['cat_data']=$this->mymodel->edit_data("category",['cat_id'=>$cat_id]);
+        $this->nav();
+        $this->load->view("admin/edit_categroy",$data);
+        $this->footer();
+    }
+    public function update_category(){
+        $this->mymodel->update('category',['cat_id'=>$_POST['cat_id']],$_POST);
+        redirect(base_url()."admincontroller/category");
+    }
+    public function delete_category($cat_id){
+        $this->mymodel->delete("category",['cat_id'=>$cat_id]);
+        redirect(base_url()."admincontroller/category");
     }
     public function subcategory(){
         $this->nav();
-        $this->load->view("admin/subcategory");
+        $data['cat_data']=$this->mymodel->select("category");
+        $data['sub_cat_data']=$this->mymodel->select_sub_cat();
+        $this->load->view("admin/subcategory",$data);
         $this->footer();
     }
+    public function save_sub_category(){
+        $_POST['sub_cat_status']="active";
+        $_POST['sub_cat_date']=date('Y-m-d H:iA');
+        $this->mymodel->insert("sub_category",$_POST);
+        redirect(base_url("admincontroller/subcategory"));
+    }
+    
 }
 ?>

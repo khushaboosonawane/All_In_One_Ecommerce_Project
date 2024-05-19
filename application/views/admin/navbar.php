@@ -53,10 +53,11 @@ defined("BASEPATH") or exit("no direct script is allowed");
 						Master
 					</li>
 					<li class="sidebar-item">
-						<a data-bs-target="#dashboards" data-bs-toggle="collapse" class="sidebar-link collapsed">
-						<i class=" align-middle me-2 far lead ri-product-hunt-fill"></i> <span class="align-middle">Product Category</span>
+						<a data-bs-target="#category" data-bs-toggle="collapse" class="sidebar-link collapsed">
+							<i class=" align-middle me-2 far lead ri-product-hunt-fill"></i>
+							<span class="align-middle">Product Category</span>
 						</a>
-						<ul id="dashboards" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
+						<ul id="category" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
 							<li class="sidebar-item"><a class='sidebar-link' href='<?= base_url() ?>admincontroller/category'>1. Category</a></li>
 							<li class="sidebar-item"><a class='sidebar-link' href='<?= base_url() ?>admincontroller/subcategory'>2.  Subcategory</a></li>
 						</ul>
