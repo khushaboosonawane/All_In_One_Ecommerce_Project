@@ -55,6 +55,23 @@ class AdminController extends CI_Controller{
         $this->mymodel->insert("sub_category",$_POST);
         redirect(base_url("admincontroller/subcategory"));
     }
+    public function edit_sub_category_data($sub_cat_id){
+        $this->nav();
+        $data['cat_data']=$this->mymodel->select("category");
+        $data['sub_cat_data']=$this->mymodel->select_sub_cat_data($sub_cat_id);
+        $this->load->view("admin/edit_sub_category_data",$data);
+        $this->footer();
+    }
+    public function update_sub_category(){
+        $_POST['sub_cat_status']="active";
+        $_POST['sub_cat_date']=date('Y-m-d H:iA');
+        $this->mymodel->update_sub_cat("sub_category",['sub_cat_id'=>$_POST['sub_cat_id']],$_POST);
+        redirect(base_url("admincontroller/subcategory"));
+    }
+    public function delete_sub_category($sub_cat_id){
+        $this->mymodel->delete("sub_category",["sub_cat_id"=>$sub_cat_id]);
+        redirect(base_url("admincontroller/subcategory"));
+    }
     
 }
 ?>

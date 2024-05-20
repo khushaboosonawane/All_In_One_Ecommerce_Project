@@ -83,10 +83,10 @@ defined("BASEPATH") or exit("no direct script is allowed");
                                 ?>
                                 <tr>
                                     <td>
-                                        <a href="<?= base_url() ?>admincontroller/edit_category_data/<?= $row['sub_cat_id'] ?>">
+                                        <a href="<?= base_url() ?>admincontroller/edit_sub_category_data/<?= $row['sub_cat_id'] ?>">
                                             <button class="btn btn-primary btn-sm"><i class="ri-pencil-line"></i></button>
                                         </a>
-                                        <a href="<?= base_url() ?>admincontroller/delete_category/<?= $row['sub_cat_id'] ?>">
+                                        <a href="<?= base_url() ?>admincontroller/delete_sub_category/<?= $row['sub_cat_id'] ?>">
                                             <button class="btn btn-danger btn-sm" onclick='return confirm("Are You Sure To Remove Record")'>
                                             <i class="ri-delete-bin-line"></i>
                                             </button>

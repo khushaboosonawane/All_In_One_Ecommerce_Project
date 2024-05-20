@@ -20,5 +20,12 @@ class MyModel extends CI_Model{
     public function select_sub_cat(){
         return $this->db->query("select * from sub_category,category where sub_category.cat_id=category.cat_id")->result_array();
     }
+    public function select_sub_cat_data($sub_cat_id){
+        return $this->db->query("select * from sub_category,category where sub_category.cat_id=$sub_cat_id and category.cat_id=$sub_cat_id")->result_array();
+    }
+    public function update_sub_cat($tablename,$condi,$data){
+       $this->db->where($condi)->update($tablename,$data);
+       
+    }
 }
 ?>
