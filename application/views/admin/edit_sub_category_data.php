@@ -27,12 +27,12 @@ defined("BASEPATH") or exit("no direct script is allowed");
                         <input type="hidden" name="sub_cat_id" value="<?= $sub_cat_data[0]['sub_cat_id'] ?>" id="">
                             <div class="col-12 col-md-3">
                                 <select class="form-select" aria-label="Default select example" required name="cat_id">
-                                    <option value="<?= $sub_cat_data[0]['cat_id'] ?>"><?= $sub_cat_data[0]['category_name'] ?></option>
+                                    <option value="" selected disabled>Select Category</option>
                                     <?php
                                     if(count($cat_data)>0){
                                     foreach($cat_data as $key=>$row){
                                     ?>
-                                    <option value="<?= $row['cat_id'] ?>"><?= $row['category_name'] ?></option>
+                                    <option value="<?= $row['cat_id'] ?>" <?=  ($sub_cat_data[0]['cat_id']==$row['cat_id'])?'selected':'' ?> ><?= $row['category_name'] ?></option>
                                     <?php
                                     }
                                     }else{
@@ -69,5 +69,4 @@ defined("BASEPATH") or exit("no direct script is allowed");
                 </div>
             </div>
         </div>
-        
 </main>

@@ -26,7 +26,7 @@ defined("BASEPATH") or exit("no direct script is allowed");
                         <form action="<?= base_url() ?>admincontroller/save_sub_category" method="post" class="row row-cols-md-auto align-items-center">
                             <div class="col-12 col-md-3">
                                 <select class="form-select" aria-label="Default select example" required name="cat_id">
-                                    <option value="">Select Category Name</option>
+                                    <option value="" disabled selected>Select Category Name</option>
                                     <?php
                                     if(count($cat_data)>0){
                                     foreach($cat_data as $key=>$row){
