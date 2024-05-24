@@ -78,8 +78,8 @@ defined("BASEPATH") or exit("no direct script is allowed");
 						Elements
 					</li>
 					<li class="sidebar-item">
-						<a class='sidebar-link' href='calendar.html'>
-							<i class="align-middle me-2 far fa-fw fa-calendar-alt"></i> <span class="align-middle">Calendar</span>
+						<a class='sidebar-link' href='<?= base_url() ?>admincontroller/add_slider'>
+							<i class="align-middle me-2 far fa-fw fa-calendar-alt"></i> <span class="align-middle">Manage Slider</span>
 						</a>
 					</li>
 				</ul>

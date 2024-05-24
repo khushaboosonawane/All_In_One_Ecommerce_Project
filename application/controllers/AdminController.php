@@ -101,6 +101,11 @@ class AdminController extends CI_Controller{
         redirect(base_url()."admincontroller/add_product");
 
     }
+    public function add_slider(){
+        $this->nav();
+        $this->load->view("admin/add_slider");
+        $this->footer();
+    }
     
 }
 ?>
