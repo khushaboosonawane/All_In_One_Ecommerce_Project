@@ -62,6 +62,16 @@ defined("BASEPATH") or exit("no direct script is allowed");
 							<li class="sidebar-item"><a class='sidebar-link' href='<?= base_url() ?>admincontroller/subcategory'>2.  Subcategory</a></li>
 						</ul>
 					</li>
+					<li class="sidebar-item">
+						<a data-bs-target="#product" data-bs-toggle="collapse" class="sidebar-link collapsed">
+							<i class=" align-middle me-2 far lead ri-product-hunt-fill"></i>
+							<span class="align-middle">Products</span>
+						</a>
+						<ul id="product" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
+							<li class="sidebar-item"><a class='sidebar-link' href='<?= base_url() ?>admincontroller/add_product'>1. Add Product</a></li>
+							<li class="sidebar-item"><a class='sidebar-link' href='<?= base_url() ?>admincontroller/Product_list'>2. Product List </a></li>
+						</ul>
+					</li>
 					
 
 					<li class="sidebar-header">
