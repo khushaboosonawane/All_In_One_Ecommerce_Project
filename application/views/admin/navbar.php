@@ -69,7 +69,7 @@ defined("BASEPATH") or exit("no direct script is allowed");
 						</a>
 						<ul id="product" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
 							<li class="sidebar-item"><a class='sidebar-link' href='<?= base_url() ?>admincontroller/add_product'>1. Add Product</a></li>
-							<li class="sidebar-item"><a class='sidebar-link' href='<?= base_url() ?>admincontroller/Product_list'>2. Product List </a></li>
+							<li class="sidebar-item"><a class='sidebar-link' href='<?= base_url() ?>admincontroller/product_list'>2. Product List </a></li>
 						</ul>
 					</li>
 					

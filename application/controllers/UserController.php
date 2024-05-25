@@ -14,7 +14,9 @@ class UserController extends CI_Controller{
     }
     public function index(){
         $this->navbar();
-        $this->load->view("user/index");
+        $data['slider']=$this->mymodel->select("slider");
+        $data['trending_product']=$this->mymodel->select("product",['status'=>"active","product_label"=>"Trending"]);
+        $this->load->view("user/index",$data);
         $this->footer();
     }
     public function show_product_with_sub_category($sub_cat_id){

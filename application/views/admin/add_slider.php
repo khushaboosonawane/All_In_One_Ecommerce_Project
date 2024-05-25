@@ -21,22 +21,20 @@ defined("BASEPATH") or exit("No direct script is allowed");
                     <div class="card-header">
                         <h5 class="card-title lead fw-bold">Manage Slider</h5>
                     </div>
-                    <!-- create table category(cat_id integer primary key auto_increment,category_name varchar(1000),category_status varchar(2000),entry_date varchar(1000)); -->
+                    <!-- create table slider(sli_id integer primary key auto_increment,slider_url text,slider_image text); -->
                     <div class="card-body">
                         <form action="<?= base_url() ?>admincontroller/save_slider" method="post" class="row row-cols-md-auto align-items-center" enctype="multipart/form-data">
-                            <div class="col-12 col-md-9">
-                                <label class="visually-hidden" for="inlineFormInputGroupUsername2">Category Name</label>
+                            <div class="col-12 col-md-5">
                                 <div class="input-group mb-2 me-sm-2">
-                                    <div class="input-group-text text-white" style="background-color:black">Category Name</div>
-                                    <input type="text" class="form-control" id="inlineFormInputGroupUsername2" placeholder="Enter Category Name" name="category_name" required>
+                                    <div class="input-group-text text-white" style="background-color:black">Slider URL</div>
+                                    <input type="text" class="form-control" id="inlineFormInputGroupUsername2" placeholder="Enter Slider URL" name="slider_url" required>
                                 </div>
 
                             </div>
-                            <div class="col-12 col-md-9">
-                                <label class="visually-hidden" for="inlineFormInputGroupUsername2">Category Name</label>
+                            <div class="col-12 col-md-5">
                                 <div class="input-group mb-2 me-sm-2">
-                                    <div class="input-group-text text-white" style="background-color:black">Category Name</div>
-                                    <input type="text" class="form-control" id="inlineFormInputGroupUsername2" placeholder="Enter Category Name" name="category_name" required>
+                                    <div class="input-group-text text-white" style="background-color:black">Slider Image</div>
+                                    <input type="file" class="form-control" id="inlineFormInputGroupUsername2" name="slider_image" required>
                                 </div>
 
                             </div>

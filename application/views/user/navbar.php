@@ -17,9 +17,11 @@
             box-sizing:border-box;
         }
     </style>
+    <link rel="stylesheet" href="<?= base_url() ?>public/style.css">
+    <script></script>
 </head>
 <body>
-<div class="container-fluid">
+    <div class="container-fluid" style="background:black;">
         <div class="row">
             <div class="col-md-12">
                 <div class="row d-flex justify-content-between align-items-center">
@@ -37,57 +39,60 @@
                 </div>
             </div>
             <div class="col-md-12">
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                <div class="container-fluid">
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="<?= base_url() ?>usercontroller/">Home</a>
-                        </li>
-                        <?php
-                        if(count($category)>0){
-                            foreach($category as $row){
-                        ?>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <?= $row['category_name'] ?>
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <?php
-                                if(count($row['sub_cat_list'])>0){
-                                    foreach($row['sub_cat_list'] as $row1){
-                                ?>
-                                <li><a class="dropdown-item" href="<?= base_url() ?>usercontroller/show_product_with_sub_category/<?= $row1['sub_cat_id'] ?>"><?= $row1['sub_category_name'] ?></a></li>
-                                <?php
-                                    }
-                                }else{
-                                ?>
-                                 <li><a class="dropdown-item" href="#">Action</a></li>
-                                <?php
-                                }
-                                ?>
-                                
-                            </ul>
-                        </li>
-                        <?php
-                            }
-                        }else{
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <div class="container-fluid">
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="<?= base_url() ?>usercontroller/">Home</a>
+                            </li>
+                            <?php
+                            if(count($category)>0){
+                                foreach($category as $row){
                             ?>
-                        <li class="nav-item">
-                             <a class="nav-link active" aria-current="page" href="#">Category Empty</a>
-                        </li>
-                        <?php
-                        }
-                        ?>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <?= $row['category_name'] ?>
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <?php
+                                    if(count($row['sub_cat_list'])>0){
+                                        foreach($row['sub_cat_list'] as $row1){
+                                    ?>
+                                    <li><a class="dropdown-item" href="<?= base_url() ?>usercontroller/show_product_with_sub_category/<?= $row1['sub_cat_id'] ?>"><?= $row1['sub_category_name'] ?></a></li>
+                                    <?php
+                                        }
+                                    }else{
+                                    ?>
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <?php
+                                    }
+                                    ?>
+                                    
+                                </ul>
+                            </li>
+                            <?php
+                                }
+                            }else{
+                                ?>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">Category Empty</a>
+                            </li>
+                            <?php
+                            }
+                            ?>
+                            
+                        </ul>
                         
-                    </ul>
-                    
+                        </div>
                     </div>
-                </div>
-            </nav>
+                </nav>
             </div>
         </div>
     </div>
+
+
+  

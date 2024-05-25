@@ -86,25 +86,72 @@ class AdminController extends CI_Controller{
         // echo "<pre>";
         // print_r($_POST);
         // print_r($_FILES);
-        $file_names=[];
+        $fnames=[];
         for($i=0;$i<count($_FILES['product_image']['name']);$i++){
-            // echo $_FILES['product_image']['name'][$i]."   ";
-            // echo $_FILES['product_image']['tmp_name'][$i]."   ";
             $file_name=time().rand(1111,9999).$_FILES['product_image']['name'][$i];
-            move_uploaded_file($_FILES['product_image']['tmp_name'][$i],"public/upload/product/".$file_name);
-            array_push($file_names,$_FILES['product_image']['name'][$i]);
+            array_push($fnames,$file_name);
+            move_uploaded_file($_FILES['product_image']['tmp_name'][$i],"public/upload/product/$file_name");
         }
-        $_POST['product_image']=implode("&&",$file_names);
+        $_POST['product_image']=implode("&&",$fnames);
         $_POST['entry_date']=date("Y-m-d H:iA");
         $_POST['status']='Active';
         $this->mymodel->insert("product",$_POST);
-        redirect(base_url()."admincontroller/add_product");
+        redirect(base_url()."admincontroller/product_list");
 
     }
     public function add_slider(){
         $this->nav();
         $this->load->view("admin/add_slider");
         $this->footer();
+    }
+    public function save_slider(){
+        echo "<pre>";
+        print_r($_POST);
+        print_r($_FILES);
+        $filename=time().rand(1111,9999).$_FILES['slider_image']['name'];
+        move_uploaded_file($_FILES['slider_image']['tmp_name'],"public/upload/slider/".$filename);
+        $_POST['slider_image']=$filename;
+        $this->mymodel->insert("slider",$_POST);
+        redirect(base_url()."admincontroller/add_slider");
+    }
+    public function product_list(){
+        $this->nav();
+        $data['product']=$this->mymodel->select_product();
+        // echo "<pre>";
+        // print_r($data['product']);
+        $this->load->view("admin/product_list",$data);
+        $this->footer();
+    }
+    public function edit_product($pro_id){
+        $this->nav();
+        $data['cat_data']=$this->mymodel->select("category");
+        $data['product']=$this->mymodel->edit_product($pro_id);
+        $this->load->view("admin/edit_product",$data);
+        $this->footer();
+    }
+    public function update_product(){
+        if(count($_FILES['product_image']['name'])>0){
+            $fnames=[];
+            for($i=0;$i<count($_FILES['product_image']['name']);$i++){
+                $file_name=time().rand(1111,9999).$_FILES['product_image']['name'][$i];
+                array_push($fnames,$file_name);
+                move_uploaded_file($_FILES['product_image']['tmp_name'][$i],"public/upload/product/$file_name");
+            }
+            $_POST['product_image']=implode("&&",$fnames);
+            $_POST['entry_date']=date("Y-m-d H:iA");
+            $_POST['status']='Active';
+            $this->mymodel->update("product",["pro_id"=>$_POST['pro_id']],$_POST);
+            redirect(base_url()."admincontroller/product_list");
+        }else{
+            $_POST['entry_date']=date("Y-m-d H:iA");
+            $_POST['status']='Active';
+            $this->mymodel->update("product",['pro_id'=>$_POST['pro_id']],$_POST);
+            redirect(base_url()."admincontroller/product_list");
+        }
+    }
+    public function delete_product($pro_id){
+        $this->mymodel->delete("product",['pro_id'=>$pro_id]);
+        redirect(base_url()."admincontroller/product_list");
     }
     
 }
