@@ -24,5 +24,10 @@ class UserController extends CI_Controller{
         $this->load->view("user/show_product_with_sub_category");
         $this->footer();
     }
+    public function product_information($pro_id){
+        $this->navbar();
+        $this->load->view("user/product_information");
+        $this->footer();
+    }
 }
 ?>

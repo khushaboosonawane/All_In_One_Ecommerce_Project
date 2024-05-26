@@ -101,8 +101,35 @@ class AdminController extends CI_Controller{
     }
     public function add_slider(){
         $this->nav();
-        $this->load->view("admin/add_slider");
+        $data['slider_data']=$this->mymodel->select("slider");
+        $this->load->view("admin/add_slider",$data);
         $this->footer();
+    }
+    public function delete_slider($sli_id){
+        $this->mymodel->delete("slider",['sli_id'=>$sli_id]);
+        redirect(base_url()."admincontroller/add_slider");
+    }
+    public function edit_slider($sli_id){
+        $data['slider']=$this->mymodel->select_where("slider",['sli_id'=>$sli_id]);
+        $this->nav();
+        $this->load->view("admin/edit_slider.php",$data);
+        $this->footer();
+    }
+    public function update_slider(){
+        if($_FILES['slider_image']['name']!=""){
+            $file_name=$this->mymodel->select_where("slider",['sli_id'=>$_POST['sli_id']]);
+            $fname=$file_name[0]['slider_image'];
+            $file_path="public/upload/slider/$fname";
+            unlink($file_path);
+           $filename=time().rand(1111,9999).$_FILES['slider_image']['name'];
+           move_uploaded_file($_FILES['slider_image']['tmp_name'],"public/upload/slider/$filename");
+           $_POST['slider_image']=$filename;
+           $this->mymodel->update("slider",['sli_id'=>$_POST['sli_id']],$_POST);
+           redirect(base_url()."admincontroller/add_slider");
+        }else{
+            $this->mymodel->update("slider",['sli_id'=>$_POST['sli_id']],$_POST);
+           redirect(base_url()."admincontroller/add_slider");
+        }
     }
     public function save_slider(){
         echo "<pre>";
