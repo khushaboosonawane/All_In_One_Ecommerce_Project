@@ -26,7 +26,8 @@ class UserController extends CI_Controller{
     }
     public function product_information($pro_id){
         $this->navbar();
-        $this->load->view("user/product_information");
+        $data['product_info']=$this->mymodel->select_where("product",['pro_id'=>$pro_id]);
+        $this->load->view("user/product_information",$data);
         $this->footer();
     }
 }
