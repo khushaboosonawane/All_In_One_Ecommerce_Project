@@ -16,7 +16,7 @@ class UserController extends CI_Controller{
     }
     private function navbar(){
         if(isset($_SESSION['user_id'])){
-            $data['user_data']=$this->mymodel->select_where("users",$_SESSION['user_id']);
+            $data['user_data']=$this->mymodel->select_where("users",["user_id"=>$_SESSION['user_id']]);
         }
         $data['category']=$this->mymodel->select_where("category",['category_status'=>"active"]);
         foreach($data['category'] as $key=>$row){
@@ -46,6 +46,12 @@ class UserController extends CI_Controller{
     public function product_information($pro_id){
         $this->navbar();
         $data['category']=$this->mymodel->select("category");
+        if(isset($_SESSION['user_id'])){
+            $cond=['pro_id'=>$pro_id,"user_id"=>$_SESSION['user_id']];
+            $data['cart']=$this->mymodel->select_where("user_cart",$cond);
+        }else{
+            $data['cart']=[];
+        }
         $data['product_info']=$this->mymodel->select_where("product",['pro_id'=>$pro_id]);
         $this->load->view("user/product_information",$data);
         $this->footer();
@@ -74,6 +80,23 @@ class UserController extends CI_Controller{
             $_SESSION['message']="account created successfully";
             redirect(base_url()."usercontroller/user_login");
         }
+    }
+    public function add_to_cart($pro_id){
+       
+        if(isset($_SESSION['user_id'])){
+
+            $data=['pro_id'=>$pro_id,'user_id'=>$_SESSION['user_id'],'qty'=>1];
+            $cond=['pro_id'=>$pro_id,'user_id'=>$_SESSION['user_id']];
+            $result=$this->mymodel->select_where("user_cart",$cond);
+            if(count($result)==0)
+                $this->mymodel->insert("user_cart",$data);
+            $_SESSION['message']="Product addedd successfully";
+            redirect(base_url()."usercontroller/product_information/".$pro_id);
+        }else{
+            $_SESSION['message']="You Must Have To Login First";
+            redirect(base_url()."usercontroller/user_login");
+        }
+
     }
     
 }

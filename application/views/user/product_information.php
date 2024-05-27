@@ -38,9 +38,23 @@ $images=explode("&&",$product_info[0]['product_image']);
             ?>
             <h4 style="font-weight:bold"><?= $product_info[0]['product_name'] ?></h4>
             <h1 style="font-weight:300">&#8377;<?= number_format($product_info[0]['product_price']) ?>/-</h1>
-            <button class="btn btn-dark btn-sm p-0 m-0 p-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M10 19.5c0 .829-.672 1.5-1.5 1.5s-1.5-.671-1.5-1.5c0-.828.672-1.5 1.5-1.5s1.5.672 1.5 1.5zm3.5-1.5c-.828 0-1.5.671-1.5 1.5s.672 1.5 1.5 1.5 1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5zm1.336-5l1.977-7h-16.813l2.938 7h11.898zm4.969-10l-3.432 12h-12.597l.839 2h13.239l3.474-12h1.929l.743-2h-4.195z"/></svg>
-            </button>
+            <?php
+            if(count($cart)==0){
+            ?>
+            <a href="<?= base_url() ?>usercontroller/add_to_cart/<?= $product_info[0]['pro_id'] ?>">
+                <button class="btn btn-sm p-0 m-0 p-2">
+                    <i class="ri-heart-line" style="font-size:28px"></i>
+                </button>
+            </a>
+            <?php
+            }else{
+            ?>
+            <i class="ri-heart-fill text-danger" style="font-size:28px"></i>
+            <?php
+            }
+            ?>
+            
+           
             <p>
                 <?= nl2br($product_info[0]['product_details']) ?>
             </p>

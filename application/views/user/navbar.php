@@ -39,8 +39,15 @@
                         if(isset($_SESSION['user_id'])){
                         ?>
                         <div style="display:inline-block;text-align:center">
-                            <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D" alt="" style="height:50px;width:50px;border-radius:50%">
-                            <span class="text-white" style="font-size:20px;font-weight:bold;display:block"></span>
+                        <?php
+                        if($user_data[0]['user_img']!=""){
+                         ?>
+                         <img src="<?= base_url() ?>public/upload/user_login_img/<?= $user_data[0]['user_img'] ?>" style="height:40px;width:40px;border-radius:50%">
+                         <?php
+                            }
+                         ?>
+                            
+                        <span class="text-white" style="font-size:15px;font-weight:bold;display:block"><?= $user_data[0]['user_name'] ?></span>
                         </div>
                         <?php
                         }else{
