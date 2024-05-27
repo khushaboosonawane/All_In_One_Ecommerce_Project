@@ -29,12 +29,29 @@
                         <img src="<?= base_url() ?>public/logo.jpg" style="height:55px;width:59px;border-radius:50%" alt="">
                     </div>
                     <div class="col-md-4" style="text-align:right">
-                        <a href="<?= base_url() ?>usercontroller/about" style="text-decoration:none;" class="mr-5">
+                        <a href="<?= base_url() ?>usercontroller/about" style="text-decoration:none;" class="mr-5 text-white">
                             About US
                         </a> &nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="<?= base_url() ?>usercontroller/about" style="text-decoration:none;" class="my-2">
+                        <a href="<?= base_url() ?>usercontroller/about" style="text-decoration:none;" class="my-2 text-white">
                             Contact
                         </a>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <?php
+                        if(isset($_SESSION['user_id'])){
+                        ?>
+                        <div style="display:inline-block;text-align:center">
+                            <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D" alt="" style="height:50px;width:50px;border-radius:50%">
+                            <span class="text-white" style="font-size:20px;font-weight:bold;display:block"></span>
+                        </div>
+                        <?php
+                        }else{
+                        ?>
+                        <a href="<?= base_url() ?>usercontroller/user_login" style="text-decoration:none;" class="my-2" title="Create An Account">
+                        <i class="ri-user-line text-white lead"></i>
+                        </a>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <?php
+                        }
+                        ?>
+                        
                     </div>
                 </div>
             </div>

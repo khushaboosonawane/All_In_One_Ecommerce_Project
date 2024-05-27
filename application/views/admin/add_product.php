@@ -70,10 +70,16 @@ defined("BASEPATH") or exit("No direct script is allowed");
                                     <input type="file" class="form-control" id="inlineFormInputGroupUsername2" name="product_image[]" multiple accept="image/*" required>
                                 </div>
                             </div>
-                            <div class="col-12 col-md-5 my-3">
+                            <!-- <div class="col-12 col-md-12 my-3">
                                 <div class="input-group mb-2 me-sm-1">
                                     <div class="input-group-text bg-primary text-white">Product Details</div>
-                                    <textarea class="form-control" id="inlineFormInputGroupUsername2" placeholder="Enter Product Details" name="product_details"  required></textarea>
+                                    <textarea class="form-control" id="editor" placeholder="Enter Product Details" name="product_details"  required rows="30" cols="30"></textarea>
+                                </div>
+                            </div> -->
+                            <div class="col-12 col-md-12 my-3">
+                                <div class="input-group mb-2 me-sm-1">
+                                    <div class="input-group-text bg-primary text-white">Product Details</div>
+                                    <textarea class="form-control" placeholder="Enter Product Details" name="product_details"  required ></textarea>
                                 </div>
                             </div>
                             <div class="col-12 col-md-3 my-3">

@@ -17,6 +17,7 @@ defined("BASEPATH") or exit("no direct script is allowed");
 	<script src="<?= base_url() ?>public/admin_assets/js/settings.js"></script>
 	
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-120946860-7"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/12.0.0/classic/ckeditor.js"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
