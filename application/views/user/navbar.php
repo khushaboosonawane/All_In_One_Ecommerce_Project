@@ -34,6 +34,9 @@
                         </a> &nbsp;&nbsp;&nbsp;&nbsp;
                         <a href="<?= base_url() ?>usercontroller/about" style="text-decoration:none;" class="my-2 text-white">
                             Contact
+                        </a>&nbsp;&nbsp;
+                        <a href="<?= base_url() ?>usercontroller/cart_page" style="text-decoration:none;color:white;font-size:20px" title="added product">
+                        <i class="ri-heart-line"></i>
                         </a>&nbsp;&nbsp;&nbsp;&nbsp;
                         <?php
                         if(isset($_SESSION['user_id'])){
@@ -42,12 +45,14 @@
                         <?php
                         if($user_data[0]['user_img']!=""){
                          ?>
-                         <img src="<?= base_url() ?>public/upload/user_login_img/<?= $user_data[0]['user_img'] ?>" style="height:40px;width:40px;border-radius:50%">
+                         <a href="<?= base_url() ?>usercontroller/view_profile/<?= $user_data[0]['user_id'] ?>">
+                            <img src="<?= base_url() ?>public/upload/user_login_img/<?= $user_data[0]['user_img'] ?>" style="height:40px;width:40px;border-radius:50%">
+                         </a>
                          <?php
                             }
                          ?>
                             
-                        <span class="text-white" style="font-size:15px;font-weight:bold;display:block"><?= $user_data[0]['user_name'] ?></span>
+                        <!-- <span class="text-white" style="font-size:15px;font-weight:bold;display:block"><?= $user_data[0]['user_name'] ?></span> -->
                         </div>
                         <?php
                         }else{

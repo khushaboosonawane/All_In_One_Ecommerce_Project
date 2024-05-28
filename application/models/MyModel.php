@@ -29,8 +29,16 @@ class MyModel extends CI_Model{
     public function edit_product($pro_id){
        return $this->db->query("select * from category,product,sub_category where category.cat_id=sub_category.cat_id and product.cat_id=category.cat_id and product.sub_cat_id=sub_category.sub_cat_id and pro_id='$pro_id'")->result_array();
     }
+    public function cartdeatils(){
+        if(isset($_SESSION['user_id'])){
+            $user_id=$_SESSION['user_id'];
+            return $this->db->query("SELECT * FROM user_cart,product WHERE user_cart.pro_id=product.pro_id and user_cart.user_id='$user_id'")->result_array();
+        }else{
+            $_SESSION['meesage']="Create Your Account";
+        }
+        
+    }
    
 }
 ?>
 
-<!-- create table user_cart(user_cart_id integer primary key auto_increment,pro_id integer,user_id integer,qty integer); -->

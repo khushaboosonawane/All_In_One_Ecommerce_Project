@@ -56,13 +56,13 @@
                         </a>
                         <div class="card-body">
                             <div class="clearfix mb-3">
-                                <span class="float-start badge rounded-pill bg-primary"><?= $row['product_label'] ?></span> <br> 
+                                <span class="float-start badge rounded-pill bg-primary"><?= $row['product_label'] ?></span><span class="float-end price-hp text-dark"><?= number_format($row['product_price']) ?> <b>Rs./-</b></span>  <br> 
                                 <span class="float-start rounded-pill"><?= $row['product_name'] ?></span> 
-                                <span class="float-end price-hp text-dark"><?= number_format($row['product_price']) ?> <b>Rs./-</b></span> 
                             </div>
-                            <h5 class="card-title">
-                            <?= $row['product_details'] ?>
-                            </h5>
+                            <h4>Details</h4>
+                            <h6 class="card-title">
+                            <?= nl2br($row['product_details']) ?>
+                            </h6>
                             <div class="text-center my-4">
                             <a href="<?= base_url() ?>usercontroller/product_information/<?= $row['pro_id'] ?>" class="btn btn-warning" style="background:black">View More</a> </div>
                         </div>

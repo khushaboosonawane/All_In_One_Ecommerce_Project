@@ -3,6 +3,56 @@ defined("BASEPATH") or exit("no direct script is allowed");
 $images=explode("&&",$product_info[0]['product_image']);
 ?>
 
+<style>
+    body{
+        overflow-x:hidden;
+    }
+    .quantity {
+  display: flex;
+  border: 2px solid #3498db;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.quantity button {
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  width: 30px;
+  height: auto;
+  text-align: center;
+  transition: background-color 0.2s;
+}
+
+.quantity button:hover {
+  background-color: #2980b9;
+}
+
+.input-box {
+  width: 40px;
+  text-align: center;
+  border: none;
+  padding: 8px 10px;
+  font-size: 16px;
+  outline: none;
+}
+
+/* Hide the number input spin buttons */
+.input-box::-webkit-inner-spin-button,
+.input-box::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.input-box[type="number"] {
+  -moz-appearance: textfield;
+}
+
+</style>
+
 <div class="container my-3">
     <div class="row">
         <div class="col-md-6">
@@ -49,11 +99,22 @@ $images=explode("&&",$product_info[0]['product_image']);
             <?php
             }else{
             ?>
-            <i class="ri-heart-fill text-danger" style="font-size:28px"></i>
+            <div class="row">
+                <div class="col-md-4">
+                    <i class="ri-heart-fill text-danger" style="font-size:28px"></i>
+                </div>
+                <div class="col-md-10">
+                    <div class="quantity" style="height:100%;width:20%">
+                        <button class="minus" aria-label="Decrease" onclick="decreaseValue('<?= $product_info[0]['pro_id'] ?>')">&minus;</button>
+                        <input type="number" class="input-box" value="<?= $cart[0]['qty'] ?>" min="1" max="10" id="quantity_value<?= $product_info[0]['pro_id'] ?>">
+                        <button class="plus" aria-label="Increase" onclick="increaseValue('<?= $product_info[0]['pro_id'] ?>')">&plus;</button>
+                    </div>
+                </div>
+            </div>
+            
             <?php
             }
             ?>
-            
            
             <p>
                 <?= nl2br($product_info[0]['product_details']) ?>
@@ -76,5 +137,26 @@ $images=explode("&&",$product_info[0]['product_image']);
         i++;
         openimage(i%images.length);
     }, 2000);
+    }
+</script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+    function increaseValue(pro_id){
+        $.ajax({
+            url:'<?= base_url() ?>usercontroller/increase_cart_qty/'+pro_id,
+            dataType:'json'
+        }).done(function(responce){
+            $("#quantity_value"+pro_id).val(responce);
+        })
+    }
+    function decreaseValue(pro_id){
+        $.ajax({
+            url:'<?= base_url() ?>usercontroller/decrease_cart_qty/'+pro_id,
+            dataType:'json'
+        }).done(function(responce){
+            $("#quantity_value"+pro_id).val(responce);
+        })
     }
 </script>

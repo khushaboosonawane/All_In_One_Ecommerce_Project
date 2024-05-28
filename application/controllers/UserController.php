@@ -38,7 +38,10 @@ class UserController extends CI_Controller{
     }
     public function show_product_with_sub_category($sub_cat_id){
         $this->navbar();
-        
+        if(isset($_SESSION['user_id'])){
+            $cond=['user_id'=>$_SESSION['user_id']];
+            $data['cart_data']=$this->mymodel->select_where("user_cart",$cond);
+        }
         $data['sub_cat_data']=$this->mymodel->select_where("product",['sub_cat_id'=>$sub_cat_id]);
         $this->load->view("user/show_product_with_sub_category",$data);
         $this->footer();
@@ -97,6 +100,50 @@ class UserController extends CI_Controller{
             redirect(base_url()."usercontroller/user_login");
         }
 
+    }
+    public function increase_cart_qty($pro_id){
+        if(isset($_SESSION['user_id'])){
+            $con=['pro_id'=>$pro_id,'user_id'=>$_SESSION['user_id']];
+            $data=$this->mymodel->select_where("user_cart",$con);
+            $newqty=$data[0]['qty']+1;
+            $this->mymodel->update("user_cart",$con,['qty'=>$newqty]);
+            echo json_encode($newqty);
+        }else{
+            echo json_decode(['status'=>'failed','msg'=>'invalid login']);
+        }
+    }
+    public function decrease_cart_qty($pro_id){
+      if(isset($_SESSION['user_id'])){
+        $cond=['pro_id'=>$pro_id,"user_id"=>$_SESSION['user_id']];
+        $data=$this->mymodel->select_where("user_cart",$cond);
+        $newqty=$data[0]['qty']-1;
+        if($newqty>=1){
+            $data=$this->mymodel->update("user_cart",$cond,['qty'=>$newqty]);
+            echo json_encode($newqty);
+        }else{
+            echo json_encode(1);
+        }
+      }  
+    }
+    public function view_profile($user_id){
+        $data['user_data']=$this->mymodel->select_where("users",['user_id'=>$user_id]);
+        $this->navbar();
+        $this->load->view("user/user_profile",$data);
+        $this->footer();
+    }
+    public function logout_account($user_id){
+        $this->mymodel->delete("users",['user_id'=>$user_id]);
+        unset($_SESSION['user_id']);
+        redirect(base_url()."usercontroller/");
+        
+    }
+    public function cart_page(){
+        $this->navbar();
+        $data['cart_data']=$this->mymodel->cartdeatils();
+        // echo "<pre>";
+        // print_r($data);
+        $this->load->view("user/cart_page",$data);
+        $this->footer();
     }
     
 }

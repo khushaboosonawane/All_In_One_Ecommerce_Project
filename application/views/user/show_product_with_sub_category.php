@@ -125,7 +125,7 @@ a
             <div class="product-card">
                 <div class="badge"><?= $row['product_label'] ?></div>
                 <div class="product-tumb">
-                    <img src="<?= base_url() ?>public/upload/product/<?= explode("&&",$row['product_image'])[0] ?>" alt="">
+                    <img src="<?= base_url() ?>public/upload/product/<?= explode("&&",$row['product_image'])[1] ?>" alt="">
                 </div>
                 <div class="product-details">
                     <span class="product-catagory"><?= $row['product_name'] ?></span>
