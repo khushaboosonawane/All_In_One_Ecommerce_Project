@@ -50,6 +50,18 @@ defined("BASEPATH") or exit("no direct script is allowed");
 							<i class="align-middle me-2 far fa-fw fa-calendar-alt"></i> <span class="align-middle">Dashboard</span>
 						</a>
 					</li>
+					<li class="sidebar-item">
+						<a data-bs-target="#orders" data-bs-toggle="collapse" class="sidebar-link collapsed">
+							<i class=" align-middle me-2 far lead ri-product-hunt-fill"></i>
+							<span class="align-middle">Orders Details</span>
+						</a>
+						<ul id="orders" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
+							<li class="sidebar-item"><a class='sidebar-link' href='<?= base_url() ?>admincontroller/pending_order'>1. Pending Orders</a></li>
+							<li class="sidebar-item"><a class='sidebar-link' href='<?= base_url() ?>admincontroller/dispatch_order'>2. Dsipatch Order </a></li>
+							<li class="sidebar-item"><a class='sidebar-link' href='<?= base_url() ?>admincontroller/delivered_order'>2. Delivered Order </a></li>
+							<li class="sidebar-item"><a class='sidebar-link' href='<?= base_url() ?>admincontroller/rejected_order'>2. Rejected Order </a></li>
+						</ul>
+					</li>
 					<li class="sidebar-header">
 						Master
 					</li>

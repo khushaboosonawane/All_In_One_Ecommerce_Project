@@ -180,6 +180,21 @@ class AdminController extends CI_Controller{
         $this->mymodel->delete("product",['pro_id'=>$pro_id]);
         redirect(base_url()."admincontroller/product_list");
     }
+    public function pending_order(){
+        $this->nav();
+        // $data['orders']=$this->mymodel->select_where("order_tbl",['order_status'=>'pending']);
+        $data['orders']=$this->mymodel->get_order_details("pending");
+
+        $this->load->view("admin/pending_order",$data);
+        $this->footer();
+    }
+    public function view_order_details($order_id){
+        $this->nav();
+        $data['order_det']=$this->mymodel->select_where("order_tbl",['order_id'=>$order_id]);
+        $data['order_products']=$this->mymodel->select_where('order_deatils',['order_id'=>$order_id]);
+        $this->load->view("admin/view_order_details",$data);
+        $this->footer();
+    }
     
 }
 ?>

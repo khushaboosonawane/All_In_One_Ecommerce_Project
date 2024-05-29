@@ -2,6 +2,22 @@
 <?php
 defined("BASEPATH") or exit("no direct script is allowed");
 ?>
+<style>
+    @media print {
+  /* CSS rules specific to printing */
+  .hideinprint{
+        display:none;
+  }
+  .printimg{
+    height:100px !important;
+    width:100px !important;
+  }
+  .desc{
+    font-size:10px;
+    width:20%;
+  }
+}
+</style>
 <div class="container">
     <div class="row text-center">
         <div class="col-md-4">
@@ -45,9 +61,9 @@ defined("BASEPATH") or exit("no direct script is allowed");
                       <tr>
                         <td><?= $row['qty'] ?></td>
                         <td>
-                            <img src="<?= base_url() ?>public/upload/product/<?= explode("&&",$row['product_image'])[1] ?>" alt="" style="height:150px;width:150px">
+                            <img src="<?= base_url() ?>public/upload/product/<?= explode("&&",$row['product_image'])[1] ?>" alt="" style="height:150px;width:150px" class="printimg">
                         </td>
-                        <td><?= $row['product_name'] ?></td>
+                        <td class="desc"><?= $row['product_name'] ?></td>
                         <td><?= number_format($row['product_price']) ?>&#8377;</td>
                         <td><?= number_format($row['product_price'] * $row['qty'])?>&#8377;</td>
                         
@@ -77,6 +93,9 @@ defined("BASEPATH") or exit("no direct script is allowed");
             </table>
         </div>
         <div class="col-md-12">
+            <div class="text-center">
+                <button class="btn-primary hideinprint" onclick="print()">Print</button>
+            </div>
             <h3 class="text-center">Thank You!..</h3>
         </div>
     </div>

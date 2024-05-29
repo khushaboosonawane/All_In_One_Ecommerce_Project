@@ -22,7 +22,7 @@
 </head>
 <body>
     <div class="container-fluid" style="background:black;">
-        <div class="row">
+        <div class="row hideinprint">
             <div class="col-md-12">
                 <div class="row d-flex justify-content-between align-items-center">
                     <div class="col-md-4 my-2 ml-2">
