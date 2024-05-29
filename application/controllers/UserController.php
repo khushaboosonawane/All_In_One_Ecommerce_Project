@@ -145,6 +145,41 @@ class UserController extends CI_Controller{
         $this->load->view("user/cart_page",$data);
         $this->footer();
     }
+    public function removefromcart(){
+        // echo"<pre>";
+        // print_r($_POST['pro_id']);
+        if(isset($_POST['pro_id'])){
+            for($i=0;$i<count($_POST['pro_id']);$i++){
+                $cond=['user_id'=>$_SESSION['user_id'],'pro_id'=>$_POST['pro_id'][$i]];
+                $this->mymodel->delete("user_cart",$cond);
+            }
+            redirect(base_url()."usercontroller/cart_page");
+        }else{
+            echo "<script>";
+            echo "alert('please select product')";
+            echo "</script>";
+            redirect(base_url()."usercontroller/cart_page");
+        }
+        
+        
+    }
+    public function confirm_address(){
+        $this->navbar();
+        $data['user_data']=$this->mymodel->select_where("users",['user_id'=>$_SESSION['user_id']]);
+        $this->load->view("user/confirm_address",$data);
+        $this->footer();
+    }
+    public function place_order(){
+        $cart_data=$this->mymodel->cartdeatils();
+        $ttl=0;
+        foreach($cart_data as $key=>$row){
+           $ttl=$row['product_price']*$row['qty'];
+        }
+        $_POST['ttl_amount']=$ttl;
+        $_POST['order_date']=date('Y-m-d');
+        $_POST['order_status']="active";
+        $_POST['status']="active";
+    }
     
 }
 ?>
