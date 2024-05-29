@@ -10,7 +10,7 @@ defined("BASEPATH") or exit("no direct script is allowed");
             <form action="<?= base_url() ?>usercontroller/place_order" method="post">
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="basic-addon1">Deliver To</span>
-                    <input type="text" class="form-control" value="<?= $user_data[0]['user_name'] ?>" aria-label="Username" aria-describedby="basic-addon1" name="deliver_to" readonly>
+                    <input type="text" class="form-control" value="" aria-label="Username" aria-describedby="basic-addon1" name="deliver_to" placeholder="Enter Person Name">
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="basic-addon1">Country</span>

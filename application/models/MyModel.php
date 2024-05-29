@@ -4,6 +4,7 @@ defined("BASEPATH") or exit("no direct script is allowed");
 class MyModel extends CI_Model{
     public function insert($tablename,$data){
         $this->db->insert($tablename,$data);
+        return $this->db->insert_id();
     }
     public function select($tablename){
        return $this->db->get($tablename)->result_array();

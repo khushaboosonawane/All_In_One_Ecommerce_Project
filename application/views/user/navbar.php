@@ -35,6 +35,15 @@
                         <a href="<?= base_url() ?>usercontroller/about" style="text-decoration:none;" class="my-2 text-white">
                             Contact
                         </a>&nbsp;&nbsp;
+                        <?php
+                        if(isset($_SESSION['user_id'])){
+                            ?>
+                            <a href="<?= base_url() ?>usercontroller/my_orders" style="text-decoration:none;" class="my-2 text-white lead" >
+                            <i class="ri-shopping-cart-line"></i>
+                            </a>&nbsp;&nbsp;
+                            <?php
+                        }
+                        ?>
                         <a href="<?= base_url() ?>usercontroller/cart_page" style="text-decoration:none;color:white;font-size:20px" title="added product">
                         <i class="ri-heart-line"></i>
                         </a>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -63,6 +72,7 @@
                         <?php
                         }
                         ?>
+                        
                         
                     </div>
                 </div>

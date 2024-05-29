@@ -165,8 +165,7 @@ class UserController extends CI_Controller{
     }
     public function confirm_address(){
         $this->navbar();
-        $data['user_data']=$this->mymodel->select_where("users",['user_id'=>$_SESSION['user_id']]);
-        $this->load->view("user/confirm_address",$data);
+        $this->load->view("user/confirm_address");
         $this->footer();
     }
     public function place_order(){
@@ -175,10 +174,41 @@ class UserController extends CI_Controller{
         foreach($cart_data as $key=>$row){
            $ttl=$row['product_price']*$row['qty'];
         }
+        $_POST['user_id']=$_SESSION['user_id'];
         $_POST['ttl_amount']=$ttl;
         $_POST['order_date']=date('Y-m-d');
-        $_POST['order_status']="active";
+        $_POST['order_status']="pending";
         $_POST['status']="active";
+        $order_id=$this->mymodel->insert("order_tbl",$_POST);
+        foreach($cart_data as $key=>$row){
+            $product['order_id']=$order_id;
+            $product['user_id']=$_SESSION['user_id'];
+            $product['pro_id']=$row['pro_id'];
+            $product['qty']=$row['qty'];
+            $product['product_name']=$row['product_name'];
+            $product['product_price']=$row['product_price'];
+            $product['product_details']=$row['product_details'];
+            $product['product_label']=$row['product_label'];
+            $product['product_image']=$row['product_image'];
+            $product['status']='active';
+
+            $this->mymodel->insert("order_deatils",$product);
+        }
+        $this->mymodel->delete("user_cart",['user_id'=>$_SESSION['user_id']]);
+        redirect(base_url()."usercontroller/my_orders");
+    }
+    public function my_orders(){
+        $this->navbar();
+        $data['orders']=array_reverse($this->mymodel->select_where("order_tbl",['user_id'=>$_SESSION['user_id'],'status'=>'active']));
+        $this->load->view("user/my_orders",$data);
+        $this->footer();
+    }
+    public function open_invoice($order_id){
+        $this->navbar();
+        $data['order_det']=$this->mymodel->select_where("order_tbl",['order_id'=>$order_id]);
+        $data['order_products']=$this->mymodel->select_where('order_deatils',['order_id'=>$order_id]);
+        $this->load->view("user/open_invoice",$data);
+        $this->footer();
     }
     
 }
