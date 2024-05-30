@@ -43,7 +43,17 @@
 			<div class="row h-100">
 				<div class="col-sm-10 col-md-8 col-lg-6 mx-auto d-table h-100">
 					<div class="d-table-cell align-middle">
-
+                        <div class="text-center">
+                        <?php
+                        if(isset($_SESSION['error'])){
+                            ?>
+                            <div class="alert alert-danger p-3" role="alert">
+                                Invalid Login
+                            </div>
+                            <?php
+                        }
+                        ?>
+                        </div>
 						<div class="text-center mt-4">
 							<h1 class="h2">Welcome back</h1>
 							<p class="lead">
@@ -56,28 +66,22 @@
 								<div class="m-sm-4">
 									<div class="text-center">
 									</div>
-									<form>
+									<form action="<?= base_url() ?>adminlogincontroller/process" method="post">
 										<div class="mb-3">
 											<label>Email</label>
-											<input class="form-control form-control-lg" type="email" name="email" placeholder="Enter your email" />
+											<input class="form-control form-control-lg" type="email" name="admin_email" placeholder="Enter your email" />
 										</div>
 										<div class="mb-3">
 											<label>Password</label>
-											<input class="form-control form-control-lg" type="password" name="password" placeholder="Enter your password" />
+											<input class="form-control form-control-lg" type="password" name="admin_password" placeholder="Enter your password" />
 											<!-- <small>
 												<a href='pages-reset-password.html'>Forgot password?</a>
 											</small> -->
 										</div>
-										<div>
-											<div class="form-check align-items-center">
-												<input id="customControlInline" type="checkbox" class="form-check-input" value="remember-me" name="remember-me"
-													checked>
-												<label class="form-check-label text-small" for="customControlInline">Remember me next time</label>
-											</div>
-										</div>
+										
 										<div class="text-center mt-3">
-											<a class='btn btn-lg btn-primary' href='dashboard-default.html'>Sign in</a>
-											<!-- <button type="submit" class="btn btn-lg btn-primary">Sign in</button> -->
+											<!-- <a class='btn btn-lg btn-primary' href='dashboard-default.html'>Sign in</a> -->
+											<button type="submit" class="btn btn-lg btn-primary">Sign in</button>
 										</div>
 									</form>
 								</div>
