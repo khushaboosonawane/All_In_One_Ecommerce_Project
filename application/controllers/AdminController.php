@@ -9,7 +9,11 @@ class AdminController extends CI_Controller{
         }
     }
     private function nav(){
-        $this->load->view("admin/navbar");
+        if(isset($_SESSION['admin_id'])){
+            $data['admin_data']=$this->mymodel->select_where("admin_details",['admin_id'=>$_SESSION['admin_id']]);
+           $this->load->view("admin/navbar",$data);
+
+        }
     }
     private function footer(){
         $this->load->view("admin/footer");
@@ -236,6 +240,12 @@ class AdminController extends CI_Controller{
         $this->nav();
         $data['orders']=$this->mymodel->get_order_details("deliver");
         $this->load->view("admin/delivered_order_details",$data);
+        $this->footer();
+    }
+    public function user_data(){
+        $this->nav();
+        $data['user_data']=$this->mymodel->select("users");
+        $this->load->view("admin/user_data",$data);
         $this->footer();
     }
 }

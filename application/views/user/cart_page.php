@@ -132,7 +132,14 @@ defined("BASEPATH") or exit("no direct script is allowed");
 
         }else{
           ?>
-          <h1>Create Your Account</h1>
+          <!-- <div class="row"> -->
+            <div class="col-md-12 p-5">
+              <h1 class="">Create Your Account</h1>
+              <a href="<?= base_url() ?>usercontroller/user_login">
+                <button class="btn btn-primary">Login ..</button>
+              </a>
+            </div>
+          <!-- </div> -->
           <?php
         }
         ?>

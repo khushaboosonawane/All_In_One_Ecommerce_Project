@@ -1,5 +1,5 @@
-<div class="container-fluid">
-    <div class="row">
+<div class="container-fluid my-1">
+    <!-- <div class="row">
         <div class="col-md-12">
             <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-indicators">
@@ -34,6 +34,53 @@
                 </button>
             </div>
         </div>
+    </div> -->
+
+    <div class="row">
+        
+        <div id="slider" style="height:80vh;width:100%;p-0;m-0"> 
+        <?php
+        if(count($slider)>0){
+            foreach($slider as $key=>$row){
+        ?>
+            <div class="slides">  
+                <img src="<?= base_url() ?>public/upload/slider/<?= $row['slider_image'] ?>" width="100%" style="object-fit:cover" />
+            </div>
+        <?php
+            }
+        }else{
+            ?>
+             <div class="slides">  
+                <img src="https://blog.cognifit.com/wp-content/uploads/2019/11/hiking-900x300.jpg" width="100%" style="height:700px" />
+            </div>
+        
+            <div class="slides">  
+                <img src="https://travelfree.info/wp-content/uploads/2018/02/croatia-waterfall-in-deep-forest-of-Cr-12755165-900x300.jpg" width="100%" style="height:700px"/>
+            </div> 
+            <?php
+
+        }
+        ?>  
+       
+        
+        <div id="dot" style="z-index:999;margin-top:500px">
+        <?php
+        if(count($slider)>0){
+            foreach($slider as $key=>$row){
+                ?>
+                <span class="dot"></span>
+                <?php
+            }
+
+        }else{
+            ?>
+            <span class="dot"></span><span class="dot"></span>
+            <?php
+
+        }
+        ?>
+        </div>
+
     </div>
 </div>
 
@@ -59,10 +106,7 @@
                                 <span class="float-start badge rounded-pill bg-primary"><?= $row['product_label'] ?></span><span class="float-end price-hp text-dark"><?= number_format($row['product_price']) ?> <b>Rs./-</b></span>  <br> 
                                 <span class="float-start rounded-pill"><?= $row['product_name'] ?></span> 
                             </div>
-                            <h4>Details</h4>
-                            <h6 class="card-title">
-                            <?= nl2br($row['product_details']) ?>
-                            </h6>
+                            
                             <div class="text-center my-4">
                             <a href="<?= base_url() ?>usercontroller/product_information/<?= $row['pro_id'] ?>" class="btn btn-warning" style="background:black">View More</a> </div>
                         </div>
@@ -76,3 +120,35 @@
         </div>
     </div>
 </main>
+
+<script>
+    var index = 0;
+var slides = document.querySelectorAll(".slides");
+var dot = document.querySelectorAll(".dot");
+
+function changeSlide(){
+
+  if(index<0){
+    index = slides.length-1;
+  }
+  
+  if(index>slides.length-1){
+    index = 0;
+  }
+  
+  for(let i=0;i<slides.length;i++){
+    slides[i].style.display = "none";
+    dot[i].classList.remove("active");
+  }
+  
+  slides[index].style.display= "block";
+  dot[index].classList.add("active");
+  
+  index++;
+  
+  setTimeout(changeSlide,2000);
+  
+}
+
+changeSlide();
+</script>

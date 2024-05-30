@@ -35,13 +35,20 @@ defined("BASEPATH") or exit("no direct script is allowed");
 	<div class="wrapper">
 		<nav id="sidebar" class="sidebar">
 			<a class='sidebar-brand text-center' href='<?= base_url() ?>admincontroller/index'>
-				<img src="<?= base_url() ?>public/logo.jpg" alt="" style="height:75px;width:90px;border-radius:50%;">
+				<img src="<?= base_url() ?>public/logo.jpg" alt="" style="height:40px;width:40px;border-radius:50%;">
 			</a>
 			<div class="sidebar-content">
 				<div class="sidebar-user">
-					<img src="<?= base_url() ?>public/admin_assets/img/avatars/avatar.jpg" class="img-fluid rounded-circle mb-2" alt="Linda Miller" />
-					<div class="fw-bold">Linda Miller</div>
-					<small>Front-end Developer</small>
+					<!-- <img src="<?= base_url() ?>public/admin_assets/img/avatars/avatar.jpg" class="img-fluid rounded-circle mb-2" alt="Linda Miller" /> -->
+					<?php
+					if(isset($_SESSION['admin_id'])){
+						?>
+						<div class="fw-bold" style="font-weight:bold"><?= $admin_data[0]['admin_name'] ?></div>
+						<?php
+					}
+					?>
+					
+					<!-- <small>Front-end Developer</small> -->
 				</div>
 
 				<ul class="sidebar-nav">
@@ -108,7 +115,7 @@ defined("BASEPATH") or exit("no direct script is allowed");
 					<ul class="navbar-nav ms-auto">
 						<li class="nav-item dropdown ms-lg-2">
 							<a class="nav-link dropdown-toggle position-relative" href="#" id="userDropdown" data-bs-toggle="dropdown">
-								<i class="ri-user-line lead" style="font-weight:bold"></i>
+								<!-- <i class="ri-user-line lead" style="font-weight:bold"></i> -->
 							</a>
 							<div class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
 								<a class="dropdown-item" href="#"><i class="align-middle me-1 fas fa-fw fa-user"></i> View Profile</a>

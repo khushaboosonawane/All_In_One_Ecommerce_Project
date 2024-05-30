@@ -12,5 +12,6 @@ document.addEventListener("DOMContentLoaded", function() {
             element.classList.toggle('bounce');
         }
         i++;
-    }, 500);
+    }, 5000);
 });
+
