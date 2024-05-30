@@ -195,6 +195,44 @@ class AdminController extends CI_Controller{
         $this->load->view("admin/view_order_details",$data);
         $this->footer();
     }
-    
+    public function dispatch_order($order_id){
+        $data['order_status']="dispatched";
+        $data['dispatched_date']=date('Y-m-d');
+        $cond=['order_id'=>$order_id];
+        $this->mymodel->update("order_tbl",$cond,$data);
+        redirect(base_url()."admincontroller/pending_order");
+    }
+   public function dispatch_order_details(){
+      $this->nav();
+      $data['orders']=$this->mymodel->get_order_details("dispatched");
+      $this->load->view("admin/dispatch_order_details",$data);
+      $this->footer();
+   }
+   public function reject_order($order_id){
+    $data['order_status']="rejected";
+    $data['reject_date']=date('Y-m-d');
+    $cond=['order_id'=>$order_id];
+    $this->mymodel->update("order_tbl",$cond,$data);
+    redirect(base_url()."admincontroller/pending_order");
+    }
+    public function rejected_order_details(){
+        $this->nav();
+        $data['orders']=$this->mymodel->get_order_details("rejected");
+        $this->load->view("admin/rejected_order_details",$data);
+        $this->footer();
+    }
+    public function deliver_order($order_id){
+        $data['order_status']="deliver";
+        $data['deliver_date']=date('Y-m-d');
+        $cond=['order_id'=>$order_id];
+        $this->mymodel->update("order_tbl",$cond,$data);
+        redirect(base_url()."admincontroller/pending_order");
+    }
+    public function delivered_order_details(){
+        $this->nav();
+        $data['orders']=$this->mymodel->get_order_details("deliver");
+        $this->load->view("admin/delivered_order_details",$data);
+        $this->footer();
+    }
 }
 ?>

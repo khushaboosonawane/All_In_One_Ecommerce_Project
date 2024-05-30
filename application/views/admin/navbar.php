@@ -57,9 +57,9 @@ defined("BASEPATH") or exit("no direct script is allowed");
 						</a>
 						<ul id="orders" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
 							<li class="sidebar-item"><a class='sidebar-link' href='<?= base_url() ?>admincontroller/pending_order'>1. Pending Orders</a></li>
-							<li class="sidebar-item"><a class='sidebar-link' href='<?= base_url() ?>admincontroller/dispatch_order'>2. Dsipatch Order </a></li>
-							<li class="sidebar-item"><a class='sidebar-link' href='<?= base_url() ?>admincontroller/delivered_order'>2. Delivered Order </a></li>
-							<li class="sidebar-item"><a class='sidebar-link' href='<?= base_url() ?>admincontroller/rejected_order'>2. Rejected Order </a></li>
+							<li class="sidebar-item"><a class='sidebar-link' href='<?= base_url() ?>admincontroller/dispatch_order_details'>2. Dsipatch Order </a></li>
+							<li class="sidebar-item"><a class='sidebar-link' href='<?= base_url() ?>admincontroller/delivered_order_details'>2. Delivered Order </a></li>
+							<li class="sidebar-item"><a class='sidebar-link' href='<?= base_url() ?>admincontroller/rejected_order_details'>2. Rejected Order </a></li>
 						</ul>
 					</li>
 					<li class="sidebar-header">

@@ -40,7 +40,7 @@ class MyModel extends CI_Model{
         
     }
     public function get_order_details($status){
-        return $this->db->query("select * from order_tbl,users where order_tbl.user_id=users.user_id and order_tbl.order_status='$status'")->result_array();
+        return $this->db->query("select * from order_tbl,users where order_tbl.user_id=users.user_id and order_tbl.order_status='$status' and status='active'")->result_array();
     }
    
 }
