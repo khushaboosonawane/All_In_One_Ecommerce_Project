@@ -132,10 +132,7 @@ a
                     <p><?= nl2br($row['product_details']) ?></p>
                     <div class="product-bottom-details">
                         <div class="product-price">&#8377;<?= $row['product_price'] ?>/-</div>
-                        <div class="product-links">
-                            <a href=""><i class="fa fa-heart"></i></a>
-                            <a href=""><i class="fa fa-shopping-cart"></i></a>
-                        </div>
+                       
                     </div>
                     <div class="product-bottom-details text-center">
                         <a href="<?= base_url() ?>usercontroller/product_information/<?= $row['pro_id'] ?>">

@@ -5,10 +5,16 @@ defined("BASEPATH") or exit("no direct script is allowed");
 <?php
 if(isset($_SESSION['user_id'])){
     ?>
-    <div class="container">
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-md-12 text-center mb-5">
+                <h2>Order Details</h2>
+                <hr>
+            </div>
+        </div>
     <div class="row">
         <div class="col-dm-12">
-            <table class="table table-responsive text-center">
+            <table class="table table-bordered table-responsive text-center">
                 <?php
                 if(count($orders)>0){
                     ?>
@@ -17,6 +23,8 @@ if(isset($_SESSION['user_id'])){
                         <th>Order Price</th>
                         <th>Order Status</th>
                         <th>Address</th>
+                        <th></th>
+                        <th>Cancel Order</th>
                     </tr>
                     <?php
                   foreach($orders as $key=>$row){
@@ -31,13 +39,40 @@ if(isset($_SESSION['user_id'])){
                                 $color="red";
                             }
                             ?>
-                            <td style="color:<?= $color ?>;font-weight:bold;text-transform:capitalize"><?= $row['order_status'] ?> Order </td>
+                            <td style="color:<?= $color ?>;font-weight:bold;text-transform:capitalize">
+                            <?= $row['order_status'] ?> Order </td>
                             <td><?= $row['deliver_country'] ?> , <?= $row['deliver_state'] ?> , <?= $row['deliver_district'] ?> , <?= $row['deliver_area'] ?> , <?= $row['deliver_pincode'] ?></td>
                             <td>
                                 <a href="<?= base_url() ?>usercontroller/open_invoice/<?= $row['order_id'] ?>">
-                                    <buttton class="btn btn-primary btn-sm">Invoice</buttton>
+                                    <buttton class=" btn-primary btn-sm">Invoice</buttton>
                                 </a>
                             </td>
+                            <?php
+                            if($row['order_status']=="pending"){
+                                ?>
+                                <!-- echo 1; -->
+                                <td>
+                                    <a href="<?= base_url() ?>usercontroller/cancel_order/<?= $row['order_id'] ?>" style="text-decoration:none">
+                                        <buttton class="btn-danger btn-sm">Cancel Order</buttton>
+                                    </a>
+                                </td>
+                                <?php
+                            }else if($row['order_status']=="dispatched"){
+                                // echo 2;
+                                ?>
+                                 <td>
+                                    <a href="<?= base_url() ?>usercontroller/cancel_order/<?= $row['order_id'] ?>" style="text-decoration:none">
+                                        <buttton class="btn-danger btn-sm">Cancel Order</buttton>
+                                    </a>
+                                </td>
+                                <?php
+                            }else{
+                                // echo 3;
+                            }
+                            ?>
+                            
+                           
+                          
                         </a>
                         </tr>
                     

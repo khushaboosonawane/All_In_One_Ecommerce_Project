@@ -168,6 +168,32 @@ if(isset($_SESSION['error_msg'])){
 unset($_SESSION['error_msg']);
 }
 ?>
+<br><br><br>
+<div style="height:auto;width:100%;background:black;color:white">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-4 col-12 p-5">
+      <img src="<?= base_url() ?>public/logo.jpg" style="height:50px;width:50px;border-radius:50%" alt="">
+       <h4 class="text-white">
+        Address :
+       </h4>
+       <p class="lead">
+        At Bhenda Tel Newasa Dist Ahemadnagr
+       </p>
+    </div>
+    <div class="col-md-4 col-12 p-5 my-3">
+      <ul style="list-style:none;display:flex;">
+        <li style="border:1px solid white;padding:5px 10px;border-radius:50%"><i class="ri-facebook-line"></i></li> &nbsp;&nbsp;  
+        <li style="border:1px solid white;padding:5px 10px;border-radius:50%"><i class="ri-twitter-line"></i></li>&nbsp;&nbsp;  
+        <li style="border:1px solid white;padding:5px 10px;border-radius:50%"><i class="ri-instagram-line"></i></li>&nbsp;&nbsp;  
+        <li style="border:1px solid white;padding:5px 10px;border-radius:50%"><i class="ri-mail-open-line"></i></li>
+      </ul>
+      <span>+91 9665065113</span> <br>
+      <span>sokhushaboo202@gmail.com</span>
+    </div>
+  </div>
+</div>
+</div>
 
 
 </body>

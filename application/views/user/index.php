@@ -1,3 +1,5 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
 <div class="container-fluid my-1">
     <!-- <div class="row">
         <div class="col-md-12">
@@ -44,7 +46,7 @@
             foreach($slider as $key=>$row){
         ?>
             <div class="slides">  
-                <img src="<?= base_url() ?>public/upload/slider/<?= $row['slider_image'] ?>" width="100%" style="object-fit:cover" />
+                <img src="<?= base_url() ?>public/upload/slider/<?= $row['slider_image'] ?>" style="height:100%;width:100%" />
             </div>
         <?php
             }
@@ -84,6 +86,11 @@
     </div>
 </div>
 
+<!-- offer  -->
+
+ 
+
+<!-- trending product  -->
 <main>
     <div class="container bg-trasparent my-4 p-3" style="position: relative;">
     <div class="row">
@@ -120,6 +127,8 @@
         </div>
     </div>
 </main>
+<!-- trending product end  -->
+
 
 <script>
     var index = 0;
@@ -152,3 +161,51 @@ function changeSlide(){
 
 changeSlide();
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+  <script>
+    // Slider version 1
+    $('.owl-carousel.version-1').owlCarousel({
+      loop: true,
+      margin: 15,
+      responsiveClass: true,
+      responsive: {
+        0: {
+          items: 2,
+          nav: true
+        },
+        600: {
+          items: 3,
+          nav: false
+        },
+        1000: {
+          items: 4,
+          nav: true
+        }
+      }
+    });
+
+    // Slider version 2
+    $('.owl-carousel.version-2').owlCarousel({
+      loop: true,
+      margin: 15,
+      center: true,
+      responsiveClass: true,
+      responsive: {
+        0: {
+          items: 1,
+          nav: true
+        },
+        600: {
+          items: 2,
+          nav: false
+        },
+        1000: {
+          items: 3,
+          nav: true
+        }
+      }
+    });
+  </script>
+
+

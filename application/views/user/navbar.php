@@ -18,7 +18,9 @@
         }
     </style>
     <link rel="stylesheet" href="<?= base_url() ?>public/style.css">
-    <script></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <script src="<?= base_url() ?>public/style.js"></script>
 </head>
 <body>
     <div class="container-fluid" style="background:black;">
@@ -29,12 +31,12 @@
                         <img src="<?= base_url() ?>public/logo.jpg" style="height:55px;width:59px;border-radius:50%" alt="">
                     </div>
                     <div class="col-md-4" style="text-align:right">
-                        <a href="<?= base_url() ?>usercontroller/about" style="text-decoration:none;" class="mr-5 text-white">
+                        <!-- <a href="<?= base_url() ?>usercontroller/about" style="text-decoration:none;" class="mr-5 text-white">
                             About US
                         </a> &nbsp;&nbsp;&nbsp;&nbsp;
                         <a href="<?= base_url() ?>usercontroller/about" style="text-decoration:none;" class="my-2 text-white">
                             Contact
-                        </a>&nbsp;&nbsp;
+                        </a>&nbsp;&nbsp; -->
                         <?php
                         if(isset($_SESSION['user_id'])){
                             ?>

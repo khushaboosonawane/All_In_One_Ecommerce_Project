@@ -32,7 +32,7 @@ class UserController extends CI_Controller{
     public function index(){
         $this->navbar();
         $data['slider']=$this->mymodel->select("slider");
-        $data['trending_product']=$this->mymodel->select("product",['status'=>"active","product_label"=>"Trending"]);
+        $data['trending_product']=$this->mymodel->select_where("product",['status'=>"active","product_label"=>"Trending"]);
         $this->load->view("user/index",$data);
         $this->footer();
     }
@@ -199,7 +199,8 @@ class UserController extends CI_Controller{
     }
     public function my_orders(){
         $this->navbar();
-        $data['orders']=array_reverse($this->mymodel->select_where("order_tbl",['user_id'=>$_SESSION['user_id'],'status'=>'active']));
+        // $data['orders']=array_reverse($this->mymodel->select_where("order_tbl",['user_id'=>$_SESSION['user_id'],'status'=>'active']));
+        $data['orders']=array_reverse($this->mymodel->select_order_details());
         $this->load->view("user/my_orders",$data);
         $this->footer();
     }
@@ -208,6 +209,35 @@ class UserController extends CI_Controller{
         $data['order_det']=$this->mymodel->select_where("order_tbl",['order_id'=>$order_id]);
         $data['order_products']=$this->mymodel->select_where('order_deatils',['order_id'=>$order_id]);
         $this->load->view("user/open_invoice",$data);
+        $this->footer();
+    }
+    public function cancel_order($order_id){
+        $data['cancel_order']=$this->mymodel->select_order_data($order_id);
+        $this->navbar();
+        $this->load->view("user/cancel_order",$data);
+        $this->footer();
+    }
+    public function cancel_order_data(){
+        echo "<pre>";
+        print_r($_POST['order_det_id']);
+        if(isset($_POST['order_det_id'])){
+            for($i=0;$i<count($_POST['order_det_id']);$i++){
+                    $cond=['order_det_id'=>$_POST['order_det_id'][$i]];
+                    $data=['status'=>'deactive'];
+                    $this->mymodel->update("order_deatils",$cond,$data);
+        
+                    $_SESSION['message']="Order Cancelled successfully";
+                }
+                redirect(base_url()."usercontroller/");
+        }else{
+            redirect(base_url()."usercontroller/my_orders");
+        }
+        
+        
+    }
+    public function about(){
+        $this->navbar();
+        $this->load->view("user/about");
         $this->footer();
     }
     

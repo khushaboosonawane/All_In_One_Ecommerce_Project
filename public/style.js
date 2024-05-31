@@ -1,3 +1,5 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
 document.addEventListener("DOMContentLoaded", function() {
     var str = 'len'; // increment by 1 up to 1-nelemnts
     var i = 1;
@@ -14,4 +16,6 @@ document.addEventListener("DOMContentLoaded", function() {
         i++;
     }, 5000);
 });
+
+
 

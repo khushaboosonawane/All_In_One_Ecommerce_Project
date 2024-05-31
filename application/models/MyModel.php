@@ -42,6 +42,13 @@ class MyModel extends CI_Model{
     public function get_order_details($status){
         return $this->db->query("select * from order_tbl,users where order_tbl.user_id=users.user_id and order_tbl.order_status='$status' and status='active'")->result_array();
     }
+    public function select_order_data($order_id){
+        $user_id=$_SESSION['user_id'];
+        return $this->db->query("select * from order_tbl,order_deatils where order_tbl.order_id='$order_id' and order_deatils.order_id='$order_id' and order_tbl.user_id='$user_id'")->result_array();
+    }
+    public function select_order_details(){
+        return $this->db->query("select * from users,order_tbl,order_deatils where users.user_id=order_deatils.user_id and order_tbl.order_id=order_deatils.order_id and order_deatils.status='active'")->result_array();
+    }
    
 }
 ?>
